@@ -1,0 +1,111 @@
+import 'package:final_test_wizh/app/modules/orders/models/promo_tab_section_model.dart';
+import 'package:flutter/material.dart';
+
+class PromoTabSection extends StatelessWidget {
+  final List<PromoTabSectionModel> promoTabSectionModel;
+  const PromoTabSection({super.key, required this.promoTabSectionModel});
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: promoTabSectionModel.length,
+      child: Column(
+        children: [
+          Container(
+            constraints: const BoxConstraints(maxHeight: 30),
+            child: TabBar(
+              tabAlignment: TabAlignment.start,
+              dividerColor: Colors.transparent,
+              isScrollable: true,
+              labelColor: Colors.blue,
+              indicator: BoxDecoration(
+                border: Border.all(
+                  color: Colors.blue,
+                  width: 2,
+                ), // Border biru hanya untuk yang aktif
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.blue.withOpacity(
+                  0.2,
+                ), // Background halus untuk yang aktif
+              ),
+
+              indicatorColor: Colors.transparent,
+              tabs:
+                  promoTabSectionModel
+                      .map((e) => _buildTapCustome(title: e.title))
+                      .toList(),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Container(
+            constraints: BoxConstraints(maxHeight: 200),
+            child: TabBarView(
+              children:
+                  promoTabSectionModel
+                      .map((e) => _buildTabContent(e.title))
+                      .toList(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Container _buildTapCustome({required String title}) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.transparent),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Tab(text: title),
+    );
+  }
+
+  static Widget _buildTabContent(String title) {
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 10,
+            itemBuilder:
+                (context, index) => Container(
+                  margin: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 100,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                        ),
+                        child: const Center(child: Text('Logo Here')),
+                      ),
+                      Text(
+                        title,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "Deskripsi",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                      Text(
+                        "Harga",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ],
+                  ),
+                ),
+          ),
+        ),
+        ElevatedButton(onPressed: () {}, child: Text('Lihat Semua')),
+      ],
+    );
+  }
+}
