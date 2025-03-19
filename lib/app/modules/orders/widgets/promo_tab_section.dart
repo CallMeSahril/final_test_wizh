@@ -22,14 +22,9 @@ class _PromoTabSectionState extends State<PromoTabSection> {
             isScrollable: true,
             labelColor: Colors.blue,
             indicator: BoxDecoration(
-              border: Border.all(
-                color: Colors.blue,
-                width: 2,
-              ), // Border biru hanya untuk yang aktif
+              border: Border.all(color: Colors.blue, width: 2),
               borderRadius: BorderRadius.circular(8),
-              color: Colors.blue.withOpacity(
-                0.2,
-              ), // Background halus untuk yang aktif
+              color: Colors.blue.withAlpha((0.2 * 255).toInt()),
             ),
 
             indicatorColor: Colors.transparent,
@@ -65,7 +60,7 @@ class _PromoTabSectionState extends State<PromoTabSection> {
     );
   }
 
-   Widget _buildTabContent(String title) {
+  Widget _buildTabContent(String title) {
     return Column(
       children: [
         Expanded(

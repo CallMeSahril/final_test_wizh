@@ -17,15 +17,7 @@ class HelpContaint extends StatelessWidget {
         child: Row(
           spacing: 8,
           children: [
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 8),
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-              ),
-              child: const Center(child: Text('Logo Here')),
-            ),
+            Icon(Icons.help, size: 50, color: Colors.lightBlue[50]),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,9 +33,11 @@ class HelpContaint extends StatelessWidget {
                     "Kami siap membantu kamu. Hubungi kami melalui live chat atau email.",
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
-                  Text(
-                    "Pusat Bantuan",
-                    style: Theme.of(context).textTheme.labelMedium,
+                  InkWell(
+                    child: Text(
+                      "Pusat Bantuan",
+                      style: Theme.of(context).textTheme.labelMedium,
+                    ),
                   ),
                 ],
               ),

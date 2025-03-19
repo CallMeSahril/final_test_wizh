@@ -1,11 +1,15 @@
-
 import 'package:final_test_wizh/app/modules/orders/models/promo_tab_section_model.dart';
 import 'package:final_test_wizh/app/modules/orders/widgets/promo_tab_section.dart';
 import 'package:flutter/material.dart';
 
 class PromoTrip extends StatelessWidget {
-  final  List<PromoTabSectionModel> promoTabSectionModel;
-  const PromoTrip({super.key, required this.promoTabSectionModel});
+  final List<PromoTabSectionModel> promoTabSectionModel;
+  final IconData icon;
+  const PromoTrip({
+    super.key,
+    required this.promoTabSectionModel,
+    required this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +20,14 @@ class PromoTrip extends StatelessWidget {
         children: [
           Row(
             children: [
-              Container(
-                padding: const EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
-                ),
-                child: const Text("Logo"),
-              ),
+              Icon(icon),
+              // Container(
+              //   padding: const EdgeInsets.all(4),
+              //   decoration: BoxDecoration(
+              //     border: Border.all(color: Colors.black),
+              //   ),
+              //   child: const Text("Logo"),
+              // ),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
@@ -35,7 +40,7 @@ class PromoTrip extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
-           PromoTabSection(promoTabSectionModel: promoTabSectionModel,),
+          PromoTabSection(promoTabSectionModel: promoTabSectionModel),
         ],
       ),
     );
