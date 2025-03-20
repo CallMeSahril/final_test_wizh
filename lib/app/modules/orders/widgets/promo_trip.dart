@@ -3,12 +3,13 @@ import 'package:final_test_wizh/app/modules/orders/widgets/promo_tab_section.dar
 import 'package:flutter/material.dart';
 
 class PromoTrip extends StatelessWidget {
-  final   MapPromoTabSectionModel promoTabSectionModel;
+  final bool? isDiscount;
+  final MapPromoTabSectionModel promoTabSectionModel;
   final IconData icon;
   const PromoTrip({
     super.key,
     required this.promoTabSectionModel,
-    required this.icon,
+    required this.icon,  this.isDiscount = false,
   });
 
   @override
@@ -40,7 +41,7 @@ class PromoTrip extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
-          PromoTabSection(promoTabSectionModel: promoTabSectionModel,),
+          PromoTabSection(promoTabSectionModel: promoTabSectionModel,isDicount: isDiscount! ,),
         ],
       ),
     );

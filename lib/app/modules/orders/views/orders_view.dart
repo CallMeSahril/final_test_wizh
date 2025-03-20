@@ -50,6 +50,7 @@ class OrdersView extends GetView<OrdersController> {
           PromoTrip(
             icon: Icons.phone_android,
             promoTabSectionModel: controller.promoTabSectionModel,
+            isDiscount: true,
           ),
           PromoTrip(
             icon: Icons.card_travel,

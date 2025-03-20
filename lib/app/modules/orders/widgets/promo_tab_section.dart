@@ -2,8 +2,13 @@ import 'package:final_test_wizh/app/modules/orders/models/promo_tab_section_mode
 import 'package:flutter/material.dart';
 
 class PromoTabSection extends StatefulWidget {
+  final bool isDicount;
   final MapPromoTabSectionModel promoTabSectionModel;
-  const PromoTabSection({super.key, required this.promoTabSectionModel});
+  const PromoTabSection({
+    super.key,
+    required this.promoTabSectionModel,
+    this.isDicount = false,
+  });
 
   @override
   State<PromoTabSection> createState() => _PromoTabSectionState();
@@ -35,15 +40,25 @@ class _PromoTabSectionState extends State<PromoTabSection> {
           ),
 
           const SizedBox(height: 8),
-          Container(
-            constraints: BoxConstraints(maxHeight: 340),
-            child: TabBarView(
-              children:
-                  widget.promoTabSectionModel.promoTabSectionModel
-                      .map((e) => _buildTabContentPromo(e.title))
-                      .toList(),
-            ),
-          ),
+          widget.isDicount
+              ? Container(
+                constraints: BoxConstraints(maxHeight: 340),
+                child: TabBarView(
+                  children:
+                      widget.promoTabSectionModel.promoTabSectionModel
+                          .map((e) => _buildTabContentDisc(e.title))
+                          .toList(),
+                ),
+              )
+              : Container(
+                constraints: BoxConstraints(maxHeight: 250),
+                child: TabBarView(
+                  children:
+                      widget.promoTabSectionModel.promoTabSectionModel
+                          .map((e) => _buildTabContentPromo(e.title))
+                          .toList(),
+                ),
+              ),
         ],
       ),
     );
@@ -82,85 +97,115 @@ class _PromoTabSectionState extends State<PromoTabSection> {
                       ),
                     ],
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: Stack(
                     children: [
-                      Container(
-                        height: 100,
-                        decoration: BoxDecoration(),
-                        child: const Center(child: Text('Logo Here')),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              title,
-                              style: Theme.of(context).textTheme.bodySmall
-                                  ?.copyWith(fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "Deskripsi",
-                              style: Theme.of(context).textTheme.bodySmall
-                                  ?.copyWith(color: Colors.grey),
-                            ),
-                            Text.rich(
-                              TextSpan(
-                                text: "3.8",
-                                style: Theme.of(context).textTheme.bodySmall
-                                    ?.copyWith(color: Colors.black),
-                                children: [
-                                  TextSpan(
-                                    text: "/5 (13 Review)",
-                                    style: Theme.of(context).textTheme.bodySmall
-                                        ?.copyWith(color: Colors.grey),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            height: 100,
+                            decoration: BoxDecoration(),
+                            child: const Center(child: Text('Logo Here')),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Stack(
+                                Text(
+                                  title,
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  "Deskripsi",
+                                  style: Theme.of(context).textTheme.bodySmall
+                                      ?.copyWith(color: Colors.grey),
+                                ),
+                                Text.rich(
+                                  TextSpan(
+                                    text: "3.8",
+                                    style: Theme.of(context).textTheme.bodySmall
+                                        ?.copyWith(color: Colors.black),
+                                    children: [
+                                      TextSpan(
+                                        text: "/5 (13 Review)",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall
+                                            ?.copyWith(color: Colors.grey),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      "Rp 1.500.000",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall
-                                          ?.copyWith(color: Colors.grey),
-                                    ),
-                                    Positioned(
-                                      top: 8,
-                                      left: 0,
-                                      right: 0,
-                                      child: Transform.rotate(
-                                        angle: -0.1,
-                                        child: Container(
-                                          height: 1,
-                                          color: Colors.red,
+                                    Stack(
+                                      children: [
+                                        Text(
+                                          "Rp 1.500.000",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodySmall
+                                              ?.copyWith(color: Colors.grey),
                                         ),
+                                        Positioned(
+                                          top: 8,
+                                          left: 0,
+                                          right: 0,
+                                          child: Transform.rotate(
+                                            angle: -0.1,
+                                            child: Container(
+                                              height: 1,
+                                              color: Colors.red,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Text(
+                                      "Rp 1.000.000",
+                                      style: Theme.of(
+                                        context,
+                                      ).textTheme.bodySmall?.copyWith(
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ],
                                 ),
-                                Text(
-                                  "Rp 1.000.000",
-                                  style: Theme.of(context).textTheme.bodySmall
-                                      ?.copyWith(fontWeight: FontWeight.bold),
-                                ),
                               ],
                             ),
-                          ],
+                          ),
+                        ],
+                      ),
+                      Positioned(
+                        right: 0,
+                        top: 100,
+                        child: Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(8),
+                              bottomRight: Radius.circular(8),
+                            ),
+                          ),
+                          child: Text(
+                            "THR Termeriah",
+                            style: TextTheme.of(
+                              context,
+                            ).titleSmall?.copyWith(color: Colors.white,fontSize: 8),
+                          ),
                         ),
                       ),
                     ],
@@ -220,78 +265,6 @@ class _PromoTabSectionState extends State<PromoTabSection> {
                         height: 100,
                         decoration: BoxDecoration(),
                         child: const Center(child: Text('Logo Here')),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              title,
-                              style: Theme.of(context).textTheme.bodySmall
-                                  ?.copyWith(fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "Deskripsi",
-                              style: Theme.of(context).textTheme.bodySmall
-                                  ?.copyWith(color: Colors.grey),
-                            ),
-                            Text.rich(
-                              TextSpan(
-                                text: "3.8",
-                                style: Theme.of(context).textTheme.bodySmall
-                                    ?.copyWith(color: Colors.black),
-                                children: [
-                                  TextSpan(
-                                    text: "/5 (13 Review)",
-                                    style: Theme.of(context).textTheme.bodySmall
-                                        ?.copyWith(color: Colors.grey),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Stack(
-                                  children: [
-                                    Text(
-                                      "Rp 1.500.000",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall
-                                          ?.copyWith(color: Colors.grey),
-                                    ),
-                                    Positioned(
-                                      top: 8,
-                                      left: 0,
-                                      right: 0,
-                                      child: Transform.rotate(
-                                        angle: -0.1,
-                                        child: Container(
-                                          height: 1,
-                                          color: Colors.red,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Text(
-                                  "Rp 1.000.000",
-                                  style: Theme.of(context).textTheme.bodySmall
-                                      ?.copyWith(fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
                       ),
                     ],
                   ),

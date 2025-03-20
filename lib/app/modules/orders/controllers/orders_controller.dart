@@ -13,7 +13,7 @@ class OrdersController extends GetxController {
     ],
   );
   MapPromoTabSectionModel yourRecomendedProme = MapPromoTabSectionModel(
-    title: 'Liburan impian, harga istimewa',
+    title: 'Kuy, cek promo sebelum berpergian',
     promoTabSectionModel: [
       PromoTabSectionModel(title: 'Semua'),
       PromoTabSectionModel(title: 'Pesawat'),
