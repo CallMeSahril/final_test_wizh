@@ -12,7 +12,7 @@ class HelpContaint extends StatelessWidget {
         padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),
-          color: Colors.lightBlueAccent[100],
+          color: Colors.blue[100],
         ),
         child: Row(
           spacing: 8,

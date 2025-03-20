@@ -3,7 +3,7 @@ import 'package:final_test_wizh/app/modules/orders/widgets/promo_tab_section.dar
 import 'package:flutter/material.dart';
 
 class PromoTrip extends StatelessWidget {
-  final List<PromoTabSectionModel> promoTabSectionModel;
+  final   MapPromoTabSectionModel promoTabSectionModel;
   final IconData icon;
   const PromoTrip({
     super.key,
@@ -31,16 +31,16 @@ class PromoTrip extends StatelessWidget {
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
-                  "Liburan impian, harga istimewa",
+                  promoTabSectionModel.title,
                   style: Theme.of(
                     context,
-                  ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold),
+                  ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 8),
-          PromoTabSection(promoTabSectionModel: promoTabSectionModel),
+          PromoTabSection(promoTabSectionModel: promoTabSectionModel,),
         ],
       ),
     );

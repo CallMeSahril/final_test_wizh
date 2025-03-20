@@ -14,7 +14,7 @@ class OrdersView extends GetView<OrdersController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.blue[50],
       appBar: CustomAppBar(
         title: 'Your Orders',
         actions: [
@@ -28,13 +28,23 @@ class OrdersView extends GetView<OrdersController> {
       body: ListView(
         children: [
           // IsEmpty(title: "Tidak ada order aktif",),
-            ListView.builder(
+          SizedBox(height: 10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 17),
+            child: Text(
+              "Tiket Aktif",
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+            ),
+          ),
+          ListView.builder(
             itemCount: controller.isReschedule.length,
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             itemBuilder:
                 (context, index) =>
-                    BuildContaintOrder(title: controller.isReschedule[index],),
+                    BuildContaintOrder(title: controller.isReschedule[index]),
           ),
           HelpContaint(),
           PromoTrip(

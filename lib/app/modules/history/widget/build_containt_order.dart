@@ -27,6 +27,7 @@ class BuildContaintOrder extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 10,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,17 +41,35 @@ class BuildContaintOrder extends StatelessWidget {
                   const SizedBox(width: 8),
                   Text(
                     "Jakarta - Bali",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
-              Icon(Icons.arrow_forward_ios_sharp),
+              Icon(Icons.arrow_forward_ios_sharp,size: 16,),
             ],
           ),
-          Text("Min, 16 Mar 2025 - 01:20"),
-          Text("Lion Air - Soekarno Hatta, Terminal 2A Domestik"),
+          Text(
+            "Min, 16 Mar 2025 - 01:20",
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: Colors.grey[800]),
+          ),
+          Text(
+            "Lion Air - Soekarno Hatta, Terminal 2A Domestik",
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: Colors.grey[800]),
+          ),
           Divider(),
-          Text(title!, style: TextStyle(color: _getColorTitle())),
+          Text(
+            title!,
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: _getColorTitle(),
+            ),
+          ),
           BuildWarning(isReschedule: isReschedule!),
         ],
       ),
